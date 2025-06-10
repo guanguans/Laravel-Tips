@@ -13,8 +13,11 @@
 - [Global Middleware for HTTP Client](#laravel-tip--global-middleware-for-http-client-️)
 - [Convert Responses to Exceptions](#laravel-tip--convert-responses-to-exceptions-️)
 - [HTTP Response Status Helpers](#laravel-tip--http-response-status-helpers-️)
+- [Real-Time Download Progress](#laravel-tip--real-time-download-progress-️)
 
 ## Laravel Tip 💡: The "withToken()" method ([⬆️](#api--the-http-client-tips-cd-))
+
+![Laravel](https://img.shields.io/badge/Laravel-%3E%3D7-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
 
 Did you know that the Laravel HTTP Client comes with a fluent method called "withToken()" that you can use to set bearer tokens? 🚀
 
@@ -31,6 +34,8 @@ Http::withToken('eyJhbGciOiJIUz...');
 ```
 
 ## Laravel Tip 💡: Extend the "PersonalAccessToken" model ([⬆️](#api--the-http-client-tips-cd-))
+
+![Laravel](https://img.shields.io/badge/Sanctum-%3E%3D2-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
 
 Sanctum is a powerful package for managing API tokens. Sometimes you may wish the token model had more methods. Well, guess what? You can extend the model and register your custom one instead! 🚀
 
@@ -54,6 +59,8 @@ $token = $request->user()->currentAccessToken();
 
 ## Laravel Tip 💡: HTTP Client Handler Stats ([⬆️](#api--the-http-client-tips-cd-))
 
+![Laravel](https://img.shields.io/badge/Laravel-%3E%3D8.18-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+
 The Laravel HTTP Client uses Guzzle under the hood, providing access to statistics for each request you make, including total time, download speed and much more 🚀
 
 ```php
@@ -74,6 +81,8 @@ All the statistics related to the request:
 ```
 
 ## Laravel Tip 💡: Without Data Wrapping ([⬆️](#api--the-http-client-tips-cd-))
+
+![Laravel](https://img.shields.io/badge/Laravel-%3E%3D5.5-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
 
 Eloquent API resources are automatically wrapped in a "data" object. Sometimes, you may want to remove this wrapping. Laravel includes the "withoutWrapping" method to do exactly that 🚀
 
@@ -106,6 +115,8 @@ class AppServiceProvider extends ServiceProvider
 
 ## Laravel Tip 💡: Collect API Responses ([⬆️](#api--the-http-client-tips-cd-))
 
+![Laravel](https://img.shields.io/badge/Laravel-%3E%3D8.29.0-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+
 Usually, when working with the HTTP Client, we manually collect the JSON response from the API. However, did you know that Laravel ships with the "collect" method directly on the HTTP Client? 🚀
 
 ```php
@@ -122,6 +133,8 @@ $collection = Http::get('http://example.com')->collect();
 ```
 
 ## Laravel Tip 💡: A Better Content Negotiation ([⬆️](#api--the-http-client-tips-cd-))
+
+![Laravel](https://img.shields.io/badge/Laravel-%3E%3D5.4-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
 
 Sometimes you might have multiple response formats that you return. You can use the "getAcceptableContentTypes" method to map your response to what's best for the user 🚀
 
@@ -144,6 +157,8 @@ request()->getAcceptableContentTypes();
 
 ## Laravel Tip 💡: Get Bearer Tokens Elegantly ([⬆️](#api--the-http-client-tips-cd-))
 
+![Laravel](https://img.shields.io/badge/Laravel-%3E%3D5.4-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+
 Building an API with Laravel? You can retrieve the bearer token using the "bearerToken" method on the request object without having to manually parse it 🚀
 
 ```php
@@ -157,6 +172,8 @@ $token = request()->bearerToken();
 ```
 
 ## Laravel Tip 💡: Retry Concurrent Requests ([⬆️](#api--the-http-client-tips-cd-))
+
+![Laravel](https://img.shields.io/badge/Laravel-%3E%3D11-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
 
 In Laravel versions 10 and below, retrying failed concurrent requests wasn't possible. Well, guess what? In Laravel 11, we can! 🚀
 
@@ -174,6 +191,8 @@ $responses = Http::pool(fn (Pool $pool) => [
 ```
 
 ## Laravel Tip 💡: Send Concurrent Requests ([⬆️](#api--the-http-client-tips-cd-))
+
+![Laravel](https://img.shields.io/badge/Laravel-%3E%3D8.37-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
 
 Laravel's HTTP client wraps Guzzle, which allows you to make concurrent requests to speed things up. This is very helpful for various cases, such as health checks! 🚀
 
@@ -196,6 +215,8 @@ return $responses[0]->ok() &&
 
 ## Laravel Tip 💡: URI Templates ([⬆️](#api--the-http-client-tips-cd-))
 
+![Laravel](https://img.shields.io/badge/Laravel-%3E%3D9.51-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+
 Since Laravel uses Guzzle under the hood, you can use URI templates with Laravel's HTTP Client by calling the "withUrlParameters" method 🚀
 
 ```php
@@ -211,6 +232,8 @@ Http::withUrlParameters([
 ```
 
 ## Laravel Tip 💡: Global Middleware for HTTP Client ([⬆️](#api--the-http-client-tips-cd-))
+
+![Laravel](https://img.shields.io/badge/Laravel-%3E%3D10.14-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
 
 Sometimes you may want to apply global headers to all outgoing requests. For instance, a global user agent can help you identify your app's requests in other services or third-party APIs. Laravel already supports request and response middleware  to do exactly that 🚀
 
@@ -229,6 +252,8 @@ Http::globalResponseMiddleware(fn ($response) => $response->withHeader(
 ```
 
 ## Laravel Tip 💡: Convert Responses to Exceptions ([⬆️](#api--the-http-client-tips-cd-))
+
+![Laravel](https://img.shields.io/badge/Laravel-%3E%3D9.49-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
 
 When consuming APIs, your request might fail. While you can manually check and throw exceptions, Laravel ships with handy helpers to do exactly that 🚀
 
@@ -262,6 +287,8 @@ $response->throwIfStatus(fn(int $status) => $status >= 400);
 
 ## Laravel Tip 💡: HTTP Response Status Helpers ([⬆️](#api--the-http-client-tips-cd-))
 
+![Laravel](https://img.shields.io/badge/Laravel-%3E%3D9.49-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+
 When making API requests, you often need to check the response status code. While you can do this manually, Laravel provides wrappers for almost all status codes, which you can use for elegant and readable checks 🚀
 
 ```php
@@ -282,4 +309,28 @@ $response->unauthorized(); // status code 401
 $response->unprocessableContent(); // status code 422
 $response->serverError(); // status code >= 500
 $response->clientError(); // status code >= 400 && <500
+```
+
+## Laravel Tip 💡: Real-Time Download Progress ([⬆️](#api--the-http-client-tips-cd-))
+
+![Laravel](https://img.shields.io/badge/Laravel-%3E%3D7-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+
+If you ever need to download a file in your Laravel app, consider using Guzzle's "progress" option. It gives you real-time updates on the download, which you can broadcast to your UI, display in the console, or handle however you like 🚀
+
+```php
+<?php
+
+use Illuminate\Support\Facades\Http;
+
+Http::withToken('an-api-token')
+    ->get('https://api.example.com/plugins/some-theme')
+    ->timeout(30)
+    ->withOptions([
+        'sink' => storage_path('plugins/some-theme.zip'),
+        'progress' => function ($downloadTotal, $downloadedBytes) {
+            // You can emit an event to the frontend for real-time updates,
+            event(new PluginDownloadProgress($downloadedBytes, $downloadTotal));
+            // Or update a progress bar in a console command, etc..
+        }
+    ]);
 ```
