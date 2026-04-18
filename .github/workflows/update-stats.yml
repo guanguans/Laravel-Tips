@@ -4,33 +4,22 @@ on:
   push:
     branches: [ main ]
   workflow_dispatch:
-  schedule:
-    - cron: '0 0 * * *'
 
 jobs:
   update-stats:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           token: ${{ secrets.PAT }}
-      
-      - name: Count all tips and update stats
-        run: |
-          laravel_tips=$(grep -r "^## Laravel Tip" ./tips | wc -l)
-          php_tips=$(grep -r "^## PHP Tip" ./tips | wc -l)
-          pest_tips=$(grep -r "^## Pest Tip" ./tips | wc -l)
-          claude_code_tips=$(grep -r "^## Claude Code" ./tips | wc -l)
 
-          # Calculate total
-          total=$((laravel_tips + php_tips + pest_tips + claude_code_tips))
+      - name: Update stats.json and README counts
+        run: ./scripts/update-stats.sh
 
-          echo "{\"totalTips\": $total}" > stats.json
-          
       - name: Commit and push if changed
         run: |
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
-          git add stats.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Update tip count" && git push) 
+          git add stats.json README.md
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update tip counts" && git push)
